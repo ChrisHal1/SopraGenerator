@@ -4,20 +4,48 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-/*superclass for all entitys. this class can not be instantiated. add code here to make it available to all entitys.
- *last updated: 23.06 00:18 @Simon*/
+/* @Entity Class
+ * @Last Updated: 24.06 00:05 by @Simon
+ * @Description:
+ * Superclass for all entitys. This class can not be instantiated. Add code here to make it available to all entitys.
+ */
 
 @MappedSuperclass
 public abstract class BaseEntity {
 	
-	//every entity will have an id... you can still ignore this in entity classes if you want
+	/*
+	 * Fields
+	 *******************/
+	/*every entity will have an id...
+	 * you can still ignore this in entity classes if you want
+	 */
 	@Basic @Id @GeneratedValue
 	public long ID;
-	
-	//timestamps
+	/*Timestamps*/
 	@Basic
 	public Date LastUpdate;
 	@Basic
+	@Column(updatable=false)
 	public Date Created;
+		
 	
+	/*
+	 * Constructor
+	 *******************/
+	protected BaseEntity(){
+		this.Created = new Date();
+		this.Updated();
+	}
+
+	/*
+	 * Relation mapping
+	 *******************/
+
+
+	/*
+	 * Methods
+	 *******************/
+	protected void Updated(){
+		this.LastUpdate = new Date();
+	}
 }
