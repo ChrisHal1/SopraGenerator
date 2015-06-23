@@ -8,10 +8,6 @@ import javax.persistence.*;
 
 
 @Entity
-public class Kommentar extends Eintrag {
-
-	@ManyToOne
-	public Eintrag ZuEintrag;
+public class Gruppeneintrag extends Eintrag {
 	
-	//methods to be implemented...
 }
