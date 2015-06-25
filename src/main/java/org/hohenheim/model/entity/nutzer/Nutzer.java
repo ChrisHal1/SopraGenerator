@@ -86,7 +86,7 @@ public class Nutzer extends BaseEntity {
 	public Set<Lerngruppe> Gruppen;
 	
 	@OneToMany(mappedBy="EmpfaengerNutzer")
-	ArrayList<Pinnwandeintrag> Eintraege;
+	List<Pinnwandeintrag> Eintraege;
 
 	
 	/*

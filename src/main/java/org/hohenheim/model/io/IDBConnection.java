@@ -80,4 +80,19 @@ interface IDBConnection<T extends BaseEntity> {
 	 */
 	public boolean deleteObject(T obj);
 	
+	/*
+	 * Retrieves an object (by its id).
+	 * @int Id:	The id of the object that should be retrieved.
+	 * @T obj:	An object of the type the object you want to retrieve is from.
+	 * @return:	The object with id = Id.
+	 */
+	public T getObjectById(int Id, T obj);
+	
+	/*
+	 * Saves an object in the database. This method uses save() instead of persist().
+	 * @param obj:	object you want to save.
+	 * @returns:	id of the object.
+	 */
+	public long saveObject(T obj);
+	
 }

@@ -47,8 +47,8 @@ public class Test extends BaseEntity {
 	@ManyToOne
 	public Lerngruppe Gruppe;
 	
-	@OneToMany(mappedBy="Test")
-	public ArrayList<Frage> Fragen;
+	@OneToMany(mappedBy="AusTest")
+	public List<Frage> Fragen;
 	
 
 	/*
