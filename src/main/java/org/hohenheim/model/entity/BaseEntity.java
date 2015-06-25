@@ -19,7 +19,7 @@ public abstract class BaseEntity {
 	/*every entity will have an id...
 	 * you can still ignore this in entity classes if you want
 	 */
-	@Basic @Id @GeneratedValue
+	@Basic @Id @GeneratedValue(strategy = GenerationType.TABLE)
 	public long ID;
 	/*Timestamps*/
 	@Basic

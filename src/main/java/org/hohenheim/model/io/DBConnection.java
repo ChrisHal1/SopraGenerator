@@ -81,6 +81,26 @@ public class DBConnection<T extends BaseEntity> implements IDBConnection<T> {
 	}
 	
 	@Override
+	public T getObjectById(int Id, T obj){
+		String query = "SELECT FROM " + this.getNameOfClass(obj) + "WHERE ID = :id";
+		List result = null;
+		
+		try{
+			Query q = this.getSession().createQuery(query);
+			q.setParameter("id", Id);
+			result = q.list();
+			
+			if(result.size() > 0)
+				return (T)result.get(0);
+			else
+				return null;
+		}
+		catch(Exception e){
+			return null;
+		}
+	}
+	
+	@Override
 	public List runQueryWithRestrictions(T obj, List<SimpleExpression> criterias, int paginate_start, int paginate_range){
 		
 		List result = new ArrayList();
@@ -103,4 +123,19 @@ public class DBConnection<T extends BaseEntity> implements IDBConnection<T> {
 		return result;
 	}
 
+	@Override
+	public long saveObject(T obj){
+		
+		long result = (long)0;
+		try{
+			result = (long)this.getSession().save(obj);
+		}
+		catch(Exception e){
+			
+		}
+		
+		return result;
+	}
+	
+	
 }
