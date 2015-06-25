@@ -2,6 +2,7 @@ package org.hohenheim.model.repository;
 
 import org.hohenheim.model.entity.BaseEntity;
 import org.hohenheim.model.io.DBConnection;
+import org.springframework.stereotype.Repository;
 
 /* @Repository base class
  * @Last Updated: 25.06 15:36 by @Simon
@@ -15,12 +16,12 @@ import org.hohenheim.model.io.DBConnection;
  *
  */
 
-
-public abstract class Repository<T extends BaseEntity> implements IRepository<T> {
+@Repository
+public abstract class BaseRepository<T extends BaseEntity> implements IRepository<T> {
 
 	private DBConnection<T> db;
 	
-	public Repository() {
+	public BaseRepository() {
 		this.db = new DBConnection<T>();
 	}
 

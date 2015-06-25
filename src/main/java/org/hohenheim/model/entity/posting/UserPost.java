@@ -1,19 +1,17 @@
 package org.hohenheim.model.entity.posting;
 
 import javax.persistence.*;
-
-import org.hohenheim.model.entity.lernen.Lerngruppe;
-import org.hohenheim.model.entity.nutzer.Nutzer;
+import org.hohenheim.model.entity.user.User;
 
 /* @Entity Class
  * @Last Updated: 24.06 00:05 by @Simon
  * @Description:
- * Gruppeneintrag-Entity-Class.
+ * UserPost-Entity-Class.
  */
 
 
 @Entity
-public class Gruppeneintrag extends Eintrag {
+public class UserPost extends Post {
 
 	/*
 	 * Fields
@@ -23,21 +21,23 @@ public class Gruppeneintrag extends Eintrag {
 	/*
 	 * Constructor
 	 *******************/
-	public Gruppeneintrag(Nutzer ErstelltVon, Lerngruppe Gruppe){
-		super(ErstelltVon);
+	public UserPost(User createdBy, User recipient){
+		super(createdBy);
 		
 		/*Instantiate Relations*/
-		this.Gruppe = Gruppe;
+		this.recipient = recipient;
 	}
+
 
 	/*
 	 * Relation mapping
 	 *******************/
 	@ManyToOne
-	public Lerngruppe Gruppe;
+	public User recipient;
 	
 
 	/*
 	 * Methods
 	 *******************/
+
 }
