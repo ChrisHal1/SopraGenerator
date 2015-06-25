@@ -1,8 +1,10 @@
 package org.hohenheim.model.repository;
 
-import org.hohenheim.model.entity.lernen.Test;
+import org.hohenheim.model.entity.education.Test;
+import org.springframework.stereotype.Repository;
 
-public class TestRepository extends Repository<Test> {
+@Repository
+public class TestRepository extends BaseRepository<Test> {
 
 	public TestRepository(){
 		super();

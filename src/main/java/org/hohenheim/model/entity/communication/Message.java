@@ -1,9 +1,9 @@
-package org.hohenheim.model.entity.kommunikation;
+package org.hohenheim.model.entity.communication;
 
 import java.util.Date;
 
 import org.hohenheim.model.entity.BaseEntity;
-import org.hohenheim.model.entity.nutzer.Nutzer;
+import org.hohenheim.model.entity.user.User;
 
 import javax.persistence.*;
 
@@ -15,27 +15,27 @@ import javax.persistence.*;
 
 
 @Entity
-public class Nachricht extends BaseEntity {
+public class Message extends BaseEntity {
 
 	/*
 	 * Fields
 	 *******************/
 	@Column(length=4096, nullable=false)
-	public String Inhalt;
+	public String content;
 	@Column(length=100000)
-	public Byte[] Anhang;
+	public Byte[] file;
 	
 	
 	/*
 	 * Constructor
 	 *******************/
-	public Nachricht(Nutzer Empfaenger, Nutzer Absender){
+	public Message(User recipient, User sender){
 		super();
-		this.Inhalt = "";
+		this.content = "";
 		
 		/*Instantiate Relations*/
-		this.Empfaenger = Empfaenger;
-		this.Absender = Absender;
+		this.recipient = recipient;
+		this.sender = sender;
 	}
 
 	
@@ -43,17 +43,17 @@ public class Nachricht extends BaseEntity {
 	 * Relation mapping
 	 *******************/
 	@ManyToOne
-	public Nutzer Empfaenger;
+	public User recipient;
 	
 	@ManyToOne
-	public Nutzer Absender;
+	public User sender;
 	
 	
 	/*
 	 * Methods
 	 *******************/
 	/*created is already saved in baseclass,so this is just to capsule...*/
-	public Date Versendet(){
+	public Date sendDate(){
 		return this.Created;
 	}
 

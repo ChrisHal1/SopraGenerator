@@ -1,4 +1,4 @@
-package org.hohenheim.model.entity.nutzer;
+package org.hohenheim.model.entity.user;
 
 import javax.persistence.*;
 
@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 
 @Entity
-public class Administrator extends Nutzer {
+public class Administrator extends User {
 
 	/*
 	 * Fields
@@ -20,8 +20,8 @@ public class Administrator extends Nutzer {
 	/*
 	 * Constructor
 	 *******************/
-	public Administrator(String Name, String Email, String Passwort){
-		super(Name, Email, Passwort);
+	public Administrator(String name, String email, String password){
+		super(name, email, password);
 	}
 
 
