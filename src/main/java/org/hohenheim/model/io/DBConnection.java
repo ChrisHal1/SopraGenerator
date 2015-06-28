@@ -1,6 +1,7 @@
 package org.hohenheim.model.io;
-import java.util.*;
 
+import java.util.*;
+import java.lang.reflect.ParameterizedType;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
@@ -29,7 +30,8 @@ public class DBConnection<T extends BaseEntity> implements IDBConnection<T> {
 	
 	@Override
 	public String getNameOfClass(T obj){
-		return obj.getClass().getSimpleName();
+		return ((Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0]).getSimpleName();
+
 	}
 	
 	@Override

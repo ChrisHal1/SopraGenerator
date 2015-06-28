@@ -2,7 +2,7 @@ package org.hohenheim.model.entity.posting;
 
 import javax.persistence.*;
 
-import org.hohenheim.model.entity.education.Group;
+import org.hohenheim.model.entity.education.LGroup;
 import org.hohenheim.model.entity.user.User;
 
 /* @Entity Class
@@ -23,7 +23,7 @@ public class GroupPost extends Post {
 	/*
 	 * Constructor
 	 *******************/
-	public GroupPost(User createdBy, Group group){
+	public GroupPost(User createdBy, LGroup group){
 		super(createdBy);
 		
 		/*Instantiate Relations*/
@@ -34,7 +34,7 @@ public class GroupPost extends Post {
 	 * Relation mapping
 	 *******************/
 	@ManyToOne
-	public Group inGroup;
+	public LGroup inGroup;
 	
 
 	/*

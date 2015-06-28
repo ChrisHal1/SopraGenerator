@@ -5,15 +5,16 @@ import javax.persistence.*;
 import org.hohenheim.model.entity.*;
 import org.hohenheim.model.entity.user.*;
 import org.hohenheim.model.entity.posting.*;
+import org.hohenheim.util.helper;
 
 /* @Entity Class
- * @Last Updated: 24.06 00:05 by @Simon
+ * @Last Updated: 28 01:54 by @Simon
  * @Description:
- * Lerngruppe-Entity-Class.
+ * LLGroup-Entity-Class.
  */
 
 @Entity
-public class Group extends BaseEntity {
+public class LGroup extends BaseEntity {
 	
 	/*
 	 * Fields
@@ -30,7 +31,7 @@ public class Group extends BaseEntity {
 	/*
 	 * Constructor
 	 *******************/
-	public Group(User createdBy){
+	public LGroup(User createdBy){
 		super();
 		this.name = "Unbenannte Gruppe";
 		this.description = "";
@@ -61,15 +62,12 @@ public class Group extends BaseEntity {
 	 * Methods
 	 *******************/
 	public void addMember(User _member){
-		if(this.members == null)
-			this.members = new TreeSet<User>();
+		helper.checkSet(this.members);
 		this.members.add(_member);
 	}
 	public void removeMember(User _member){
-		if(this.members == null){
-			this.members = new TreeSet<User>();
+		if(!helper.checkSet(this.members))
 			return;
-		}
 		else
 			this.members.remove(_member);
 	}

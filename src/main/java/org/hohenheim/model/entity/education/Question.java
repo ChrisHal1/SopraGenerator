@@ -1,8 +1,10 @@
 package org.hohenheim.model.entity.education;
 
 import java.util.*;
+
 import javax.persistence.*;
 import org.hohenheim.model.entity.*;
+import org.hohenheim.util.helper;
 
 /* @Entity Class
  * @Last Updated: 24.06 00:05 by @Simon
@@ -53,14 +55,12 @@ public class Question extends BaseEntity {
 		this.points = points;
 	}
 	public void addQuestion(String question){
-		if(this.answers == null)
-			this.answers = new ArrayList<String>();
+		helper.checkList(this.answers);
 		
 		this.answers.add(question);
 	}
 	public void deleteQuestion(int index){
-		if(this.answers == null)
-			this.answers = new ArrayList<String>();
+		helper.checkList(this.answers);
 		
 		this.answers.remove(index);
 	}
