@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd 
-http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
+http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 	<!--enable automatic scanning for beans (@Controller @Service etc) -->
 	<context:component-scan base-package="
 	org.hohenheim " />
+
 	<mvc:annotation-driven />
 	<tx:annotation-driven />
 	<!--enablethethymeleafframework -->
@@ -34,9 +37,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/DatenbankName" />
+		<property name="url" value="jdbc:mysql://localhost:3306/watchit" />
 		<property name="username" value="root" />
-		<property name="password" value="mktt" />
+		<property name="password" value="root" />
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -50,4 +53,31 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 			</props>
 		</property>
 	</bean>
+
+	<!-- this section configures the spring security context, used for authentication 
+		(login) & authorization -->
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:password-encoder hash="plaintext" /><!-- 
+				change this to md5? -->
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
+				users-by-username-query="
+         			SELECT USERNAME, PASSWORD, CASE BLOCKED WHEN 0 THEN 'true' ELSE 'false' END 'BLOCKED'
+         			FROM User
+         			WHERE USERNAME=?;"
+
+				authorities-by-username-query="
+        			SELECT USERNAME, ISADMIN
+       			 	FROM User
+       				WHERE USERNAME=?;" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<security:http>
+		<security:form-login login-page="/login.html" />
+		<security:logout logout-url="/logout" />
+		<security:intercept-url pattern="/*"/> <!-- access="ROLE_USER" -->
+	</security:http>
+
 </beans>

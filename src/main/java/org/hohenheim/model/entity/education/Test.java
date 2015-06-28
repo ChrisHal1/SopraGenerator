@@ -1,8 +1,11 @@
 package org.hohenheim.model.entity.education;
 
 import java.util.*;
+
 import javax.persistence.*;
+
 import org.hohenheim.model.entity.*;
+import org.hohenheim.util.helper;
 
 /* @Entity Class
  * @Last Updated: 24.06 00:05 by @Simon
@@ -29,7 +32,7 @@ public class Test extends BaseEntity {
 	/*
 	 * Constructor
 	 *******************/
-	public Test(Group group){
+	public Test(LGroup group){
 		super();
 		this.passed = false;
 		this.taken = false;
@@ -45,7 +48,7 @@ public class Test extends BaseEntity {
 	 * Relation mapping
 	 *******************/
 	@ManyToOne
-	public Group inGroup;
+	public LGroup inGroup;
 	
 	@OneToMany(mappedBy="fromTest")
 	public List<Question> questions;
@@ -69,18 +72,16 @@ public class Test extends BaseEntity {
 	}
 	
 	public void addQuestion(Question nQuestion){
-		if(this.questions == null)
-			this.questions = new ArrayList<Question>();
+		helper.checkList(this.questions);
 		
 		this.questions.add(nQuestion);
 	}
 	
 	public void removeQuestions(Question nQuestion){
-		if(this.questions == null){
-			this.questions = new ArrayList<Question>();
+		if(!helper.checkList(this.questions))
 			return;
-		}
+		
 		else
-		this.questions.remove(nQuestion);
+			this.questions.remove(nQuestion);
 	}
 }

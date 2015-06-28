@@ -6,13 +6,15 @@ import javax.persistence.*;
 
 import org.hohenheim.model.entity.*;
 import org.hohenheim.model.entity.communication.Message;
-import org.hohenheim.model.entity.education.Group;
+import org.hohenheim.model.entity.education.LGroup;
 import org.hohenheim.model.entity.posting.*;
+import org.hohenheim.util.ROLE;
+import org.hohenheim.util.helper;
 
 /* @Entity Class
  * @Last Updated: 24.06 00:05 by @Simon
  * @Description:
- * Nutzer-Entity-Class.
+ * User-Entity-Class.
  */
 
 
@@ -24,7 +26,7 @@ public class User extends BaseEntity {
 	 * Fields
 	 *******************/
 	@Column(nullable=false)
-	public String name;
+	public String username;
 	public int age;
 	@Column(unique=true, nullable=false)
 	public String email;
@@ -33,18 +35,23 @@ public class User extends BaseEntity {
 	@Column(length=2048)
 	public String description;
 	public ArrayList<String> interests;
+	@Column(nullable=false)
 	public boolean blocked;
+	@Column(nullable=false)
+	public String rolename;
 	
 
 	/*
 	 * Constructor
 	 *******************/
-	public User(String name,String email, String password){
+	public User(String username,String email, String password, ROLE role){
 		super();
 		this.interests = new ArrayList<String>();
-		this.name = name;
+		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.blocked = false;
+		this.rolename = role.toString();
 		
 		/*Instantiate Relations*/
 		this.createdPosts = new TreeSet<Post>();
@@ -52,7 +59,7 @@ public class User extends BaseEntity {
 		this.friendOf = new TreeSet<User>();
 		this.received = new ArrayList<Message>();
 		this.send = new ArrayList<Message>();
-		this.groups = new TreeSet<Group>();
+		this.groups = new TreeSet<LGroup>();
 		this.posts = new ArrayList<UserPost>();
 	}
 
@@ -82,7 +89,7 @@ public class User extends BaseEntity {
 	public List<Message> send;
 	
 	@ManyToMany
-	public Set<Group> groups;
+	public Set<LGroup> groups;
 	
 	@OneToMany(mappedBy="recipient")
 	List<UserPost> posts;
@@ -98,9 +105,15 @@ public class User extends BaseEntity {
 	}
 	
 	public void addInterest(String interest){
-		if(this.interests == null)
-			this.interests = new ArrayList<String>();
+		helper.checkList(this.interests);
 		
 		this.interests.add(interest);
+	}
+	
+	public void block(){
+		this.blocked = true;
+	}
+	public void unblock(){
+		this.blocked = false;
 	}
 }

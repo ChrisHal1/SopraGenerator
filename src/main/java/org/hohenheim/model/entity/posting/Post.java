@@ -1,9 +1,12 @@
 package org.hohenheim.model.entity.posting;
 
 import java.util.*;
+
 import javax.persistence.*;
+
 import org.hohenheim.model.entity.BaseEntity;
 import org.hohenheim.model.entity.user.User;
+import org.hohenheim.util.helper;
 
 /* @Entity Class
  * @Last Updated: 24.06 00:05 by @Simon
@@ -53,8 +56,7 @@ public abstract class Post extends BaseEntity {
 	 * Methods
 	 *******************/
 	public void addComment(Comment nComment){
-		if(this.comments == null)
-			this.comments = new TreeSet<Comment>();
+		helper.checkSet(this.comments);
 		
 		this.comments.add(nComment);
 	}
