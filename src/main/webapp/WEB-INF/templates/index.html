@@ -9,18 +9,16 @@
 <body>
 
 	<div id="header">
-		1
+	1
 		<nav id="headernav" class="float-right">
-			<a href="bump">logout</a>
+			<a th:href="@{/logout}">Abmelden</a>
 		</nav>
-
 		<form id="search" action="/GeneratorWatchIt" method="get">
 			<input name="key" type="text" placeholder="Suche..." th:placeholder="${(param.key != null) and (param.key[0] != '') ? param.key[0] : 'Suche...'}"></input> <input
 				type="submit" value="GO"></input>
 		</form>
-
-
 	</div>
+	
 	<div id="leftbar" class="float-left">
 		<nav id="leftnav" class="nav">
 			<h5>GRUPPEN</h5>
