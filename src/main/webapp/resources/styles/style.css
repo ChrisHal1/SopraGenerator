@@ -1,0 +1,143 @@
+/*
+ * elements
+*/
+
+html, body{
+	margin: 0 auto;
+	border:none;
+	padding:0;
+	height:100%;
+	font:14px Verdana;
+	background-color: #dcd9fd;
+}
+hr{
+	border:none;
+	border-bottom:2px solid #be7dff;
+	outline:1px solid #ddbbff;
+	margin:0 12px 0 12px;
+}
+h1,h2,h3,h4,h5,h6, input{
+	letter-spacing:1px;
+}
+
+
+/*
+ * by id
+ */
+
+/*header*/
+
+#header{
+	width:100%;
+	height:150px;
+	background-color:#656565;
+	border-bottom: 2px solid gray;
+	margin:0;
+}
+
+#search{
+	float:clear;
+	width:400px;
+	margin:75px auto;
+	align:center;
+}
+#search input[type="text"]{
+	width:300px;
+	height:25px;
+	float:left;
+	margin-right:5px;
+	color:#6f00dd;
+	font-weight:bold;
+	border:2px solid #bbbbbb;
+	background-color: #fdfdfd;
+}
+#search input[type="submit"]{
+	float:left;
+	height:31px;
+	width:50px;
+	color:#444444;
+	font-weight:bold;
+	border:2px solid #b890df;
+	background-color: #d8b0ff;
+}
+
+/*content*/
+
+#content{
+	overflow:hidden;
+}
+.entry{
+	display:block;
+	height:100px;
+	border-bottom:4px solid black;
+	margin:0 50px 0 50px;
+	background-color:white;
+}
+.entry a strong{
+	text-decoration:none;
+	font-variant:small-caps;
+	color: gray;
+	font-size:20px;
+	text-align:center;
+}
+
+/*left menu*/
+
+#leftbar{
+	width:200px;
+}
+#leftnav h5{
+	font-weight:bold;
+	color:#515151;
+	margin:10px 0 5px 12px;
+}
+#leftnav-newgroup{
+	text-decoratin:underline;
+	margin-top:20px;
+}
+#leftnav a{
+	display:block;
+	margin:0 0 5px 22px;
+	padding:0 0 0 10px;
+	text-decoration:none;
+	color:blue;
+	
+}
+
+/*right menu*/
+
+#rightbar{
+	width:200px;
+}
+
+
+/*
+ * simple classes for single purpose
+ */
+ 
+.float-left{
+	float:left;
+}
+.float-right{
+	float:right;
+}
+.clear{
+	clear:both;
+}
+.inline{
+	display:inline;
+}
+.margin-top-20{
+	margin-top:20px;
+}
+
+/*******************************************************/
+/*ANIMATIONS*/
+
+#leftnav a:hover{
+	border-left:1px solid gray;
+	padding-left:15px;
+}
+input[type="submit"], a{
+	cursor:pointer;
+}

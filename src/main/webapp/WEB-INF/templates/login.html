@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Willkommen bei Watchit</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+Willkommen bei WatchIt - der sozialen Lernplattform
+
+	<form action="/" th:action="@{/j_spring_security_check}" method="POST">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	to login: username="simondas" password="cj444"
+		<table>
+			<tr>
+				<td>Username</td>
+				<td><input type="text" name="username" value="simondas" /></td>
+			</tr>
+			<tr>
+				<td>Passwort</td>
+				<td><input type="password" name="password" value="cj444" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input name="submit" type="submit" value="login"></input></td>
+			</tr>
+		
+			</table>
+	</form>
+
+</body>
+</html>

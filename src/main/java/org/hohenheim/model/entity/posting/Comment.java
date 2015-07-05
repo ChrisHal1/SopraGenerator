@@ -1,17 +1,17 @@
 package org.hohenheim.model.entity.posting;
 
 import javax.persistence.*;
-import org.hohenheim.model.entity.nutzer.Nutzer;
+import org.hohenheim.model.entity.user.User;
 
 /* @Entity Class
  * @Last Updated: 24.06 00:05 by @Simon
  * @Description:
- * Kommentar-Entity-Class.
+ * Comment-Entity-Class.
  */
 
 
 @Entity
-public class Kommentar extends Eintrag {
+public class Comment extends Post {
 
 	/*
 	 * Fields
@@ -21,11 +21,11 @@ public class Kommentar extends Eintrag {
 	/*
 	 * Constructor
 	 *******************/
-	public Kommentar(Nutzer ErstelltVon, Eintrag ZuEintrag){
-		super(ErstelltVon);
+	public Comment(User createdBy, Post ofPost){
+		super(createdBy);
 		
 		/*Instantiate Relations*/
-		this.ZuEintrag = ZuEintrag;
+		this.ofPost = ofPost;
 	}
 	
 
@@ -33,7 +33,7 @@ public class Kommentar extends Eintrag {
 	 * Relation mapping
 	 *******************/
 	@ManyToOne
-	public Eintrag ZuEintrag;
+	public Post ofPost;
 
 	
 	/*

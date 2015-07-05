@@ -1,5 +1,6 @@
 package org.hohenheim.model.entity;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -48,4 +49,5 @@ public abstract class BaseEntity {
 	protected void Updated(){
 		this.LastUpdate = new Date();
 	}
+
 }

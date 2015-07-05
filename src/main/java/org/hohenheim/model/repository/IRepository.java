@@ -1,5 +1,14 @@
 package org.hohenheim.model.repository;
 
+import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.SimpleExpression;
 import org.hohenheim.model.entity.BaseEntity;
 
 /* @Interface
@@ -18,11 +27,17 @@ import org.hohenheim.model.entity.BaseEntity;
 public interface IRepository<T extends BaseEntity> {
 
 	/*
+	 * returns you the name of T class as string. 
+	 */
+	
+	public String getNameOfClass();
+	
+	/*
 	 * Use this method to save an object of entity type T.
 	 * @param Entity:	Entity to save in database.
 	 * @return:			true if successful.
 	 */
-	public boolean save(T Entity);
+	public boolean save(T Entity) throws Exception;
 	
 	/*
 	 * Use this method to delete the "Entity" object of type T.
@@ -36,5 +51,14 @@ public interface IRepository<T extends BaseEntity> {
 	 * @param id:	The id of the object you want to fetch.
 	 * @return:		The object with id = Id.
 	 */
-	public T getById(int Id);
+	public T getById(long Id);
+	
+	public T getByUniqueAttribute(String attribute, String value);
+
+	public List runQuery(String query);
+
+	public List getAllObjectsFromTable(boolean OrderedByCreation);
+
+	public List runQueryWithRestrictions(Class<T> Tclass, List<SimpleExpression> criterias, int paginate_start, int paginate_range);
+
 }

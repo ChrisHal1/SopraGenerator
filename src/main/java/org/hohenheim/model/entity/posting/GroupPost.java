@@ -1,17 +1,19 @@
 package org.hohenheim.model.entity.posting;
 
 import javax.persistence.*;
-import org.hohenheim.model.entity.nutzer.Nutzer;
+
+import org.hohenheim.model.entity.education.LGroup;
+import org.hohenheim.model.entity.user.User;
 
 /* @Entity Class
  * @Last Updated: 24.06 00:05 by @Simon
  * @Description:
- * Pinnwandeintrag-Entity-Class.
+ * GroupPost-Entity-Class.
  */
 
 
 @Entity
-public class Pinnwandeintrag extends Eintrag {
+public class GroupPost extends Post {
 
 	/*
 	 * Fields
@@ -21,23 +23,21 @@ public class Pinnwandeintrag extends Eintrag {
 	/*
 	 * Constructor
 	 *******************/
-	public Pinnwandeintrag(Nutzer ErstelltVon, Nutzer EmpfaengerNutzer){
-		super(ErstelltVon);
+	public GroupPost(User createdBy, LGroup group){
+		super(createdBy);
 		
 		/*Instantiate Relations*/
-		this.EmpfaengerNutzer = EmpfaengerNutzer;
+		this.inGroup = group;
 	}
-
 
 	/*
 	 * Relation mapping
 	 *******************/
 	@ManyToOne
-	public Nutzer EmpfaengerNutzer;
+	public LGroup inGroup;
 	
 
 	/*
 	 * Methods
 	 *******************/
-
 }
