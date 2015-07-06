@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<title>Willkommen bei Watchit</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="resources/styles/style.css" />
+	<title>Willkommen bei Watchit</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<link rel="stylesheet" type="text/css" href="resources/styles/style.css" />
 </head>
 
 <body>
@@ -46,12 +47,13 @@
 		<th:block class="margin-top-20" th:each="group : ${openGroups}">
 			<div class="entry">
 				<a th:href="@{\groups(groupid=${group.ID})}">
-					<strong id="entry_heading" th:text="${group.name}"></strong>
-					<strong id="entry_description" th:text="${group.description}">Keine Beschreibung vorhanden.</strong>
-					<strong id="entry_focus" th:text="${group.focus}">Allgemeine Gruppe</strong>
+					<strong id="entry-heading" th:text="${group.name}"></strong>
+					<strong id="entry-focus" th:text="${group.focus != '' ? group.focus : 'Allgemeine Gruppe'}"></strong>
+					<strong id="entry-description" th:text="${group.description != '' ? group.description : 'Keine Beschreibung verfügbar.'}"></strong>
 				</a>
 			</div>
 		</th:block>
+		<div class="placeholder-100"></div>
 	</div>
 	<div id="footer" class="clear">5</div>
 

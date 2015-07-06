@@ -2,29 +2,61 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Willkommen bei Watchit</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<link rel="stylesheet" type="text/css" href="resources/styles/login.css" />
 </head>
 <body>
-Willkommen bei WatchIt - der sozialen Lernplattform
 
-	<form action="/" th:action="@{/j_spring_security_check}" method="POST">
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-	to login: username="simondas" password="cj444"
-		<table>
-			<tr>
-				<td>Username</td>
-				<td><input type="text" name="username" value="simondas" /></td>
-			</tr>
-			<tr>
-				<td>Passwort</td>
-				<td><input type="password" name="password" value="cj444" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input name="submit" type="submit" value="login"></input></td>
-			</tr>
-		
-			</table>
-	</form>
+    <header class="gradient_black">
+    
+    </header>
+
+    <content>
+        <div id="head_container">
+
+            <div id="header_div">
+                <span>Willkommen auf WatchIt - Deiner sozialen Lernplattform!</span>
+                <span class="p_small"><br />Registriere dich noch heute kostenlos und werde Teil der Community!</span>
+            </div>
+            <div id="login_container">
+                <p>Du hast bereits ein Konto?</p>
+                <form action="/" th:action="@{/j_spring_security_check}" method="POST">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <fieldset>
+                    <table>
+                        <tr>
+                            <td>E-Mail:</td>
+                            <td><input type="text" id="username" name="username" value="simondas" /></td>
+                        </tr>
+                        <tr>
+                            <td>Passwort:</td>
+                            <td><input type="password" id="password" name="password" value="cj444" /></td>
+                        </tr>
+                    </table>
+                    <hr />
+                </fieldset>
+               <p>Noch nicht registriert?<br />Melde dich jetzt kostenlos an <br />und erhalte Zugriff auf alle Angebote!</p>
+                <button name="submit" type="submit" value="login" class="button" id="button_login">ANMELDEN</button>
+                </form>
+            </div>
+        </div>
+        <div id="footer_container" align="center">
+
+        </div>
+    </content>
+
+    <footer>
+        <br />
+        <hr class="gradient_white" />
+        <br />
+        <div id="footer_labels" align="center">
+            <a href="/support.php?top=about">Über Uns</a>
+            <a href="/support.php?top=privacy">Datenschutz</a>
+            <a href="/support.php?top=agb">AGB</a>
+            <a href="/support.php?top=impressum">Impressum</a>
+            <a href="/support.php?top=sitemap">Sitemap</a>
+        </div>
+    </footer>
 
 </body>
 </html>

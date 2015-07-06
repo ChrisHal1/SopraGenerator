@@ -26,7 +26,7 @@ public class IndexController implements IController {
 
 		User user = groupService.getCurrentUserObject();
 		// Hibernate.initialize(user);
-		// this.groupService.createGroup("testgruppe");
+		this.groupService.createGroup("mygroup");
 		model.addAttribute("user", user);
 		model.addAttribute("admin", this.groupService.getCurrentUserObject().isAdmin());
 
