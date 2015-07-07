@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public class GroupPostRepository extends BaseRepository<GroupPost> {
 
 	public GroupPostRepository(){
-		super();
+		super(); 
 	}
 }
