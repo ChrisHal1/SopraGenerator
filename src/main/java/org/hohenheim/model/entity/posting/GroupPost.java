@@ -1,5 +1,7 @@
 package org.hohenheim.model.entity.posting;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import org.hohenheim.model.entity.education.LGroup;
