@@ -10,7 +10,7 @@ import org.hohenheim.util.helper;
 /* @Entity Class
  * @Last Updated: 28 01:54 by @Simon
  * @Description:
- * LLGroup-Entity-Class.
+ * LGroup-Entity-Class.
  */
 
 @Entity
@@ -25,22 +25,29 @@ public class LGroup extends BaseEntity {
 	public String description;
 	@Column(length=512)
 	public String focus;
-	public final boolean is_public = true;
+	public boolean is_public = true;
+	public int maxMembers;
 	
 	
 	/*
 	 * Constructor
 	 *******************/
-	public LGroup(User createdBy){
+	public LGroup(){
+		
+	}
+	
+	public LGroup(User createdBy, String name){
 		super();
-		this.name = "Unbenannte Gruppe";
+		this.name = name;
 		this.description = "";
-		this.focus = "Keiner";
+		this.focus = "Allgemein";
+		this.is_public = true;
+		this.maxMembers = 10;
 		
 		/*Instantiate Relations*/
-		this.members = new TreeSet<User>();
-		this.posts = new TreeSet<GroupPost>();
-		this.tests = new TreeSet<Test>();
+		this.members = new ArrayList<User>();
+		this.posts = new ArrayList<GroupPost>();
+		this.tests = new ArrayList<Test>();
 		this.addMember(createdBy);
 	}
 	
@@ -48,28 +55,34 @@ public class LGroup extends BaseEntity {
 	/*
 	 * Relation mapping
 	 *******************/
-	@ManyToMany
-	public Set<User> members;
+	@ManyToMany(fetch = FetchType.EAGER)
+	public List<User> members;
 	
-	@OneToMany(mappedBy="inGroup")
-	public Set<GroupPost> posts;
+	@OneToMany(mappedBy="inGroup", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	public List<GroupPost> posts;
 
-	@OneToMany(mappedBy="inGroup")
-	public Set<Test> tests;
+	@OneToMany(mappedBy="inGroup", fetch = FetchType.EAGER, cascade=CascadeType.REFRESH)
+	public List<Test> tests;
 	
 	
 	/*
 	 * Methods
 	 *******************/
 	public void addMember(User _member){
-		helper.checkSet(this.members);
+		helper.checkList(this.members);
 		this.members.add(_member);
 	}
 	public void removeMember(User _member){
-		if(!helper.checkSet(this.members))
+		if(!helper.checkList(this.members))
 			return;
 		else
 			this.members.remove(_member);
 	}
 
+	public int getMemberCount(){
+		return this.members.size();
+	}
+	public boolean isFull(){
+		return (this.getMemberCount() >= this.maxMembers);
+	}
 }
