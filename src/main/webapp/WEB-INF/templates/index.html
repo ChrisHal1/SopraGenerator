@@ -1,26 +1,62 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Willkommen bei Watchit</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-Willkommen bei WatchIt - der sozialen Lernplattform
 
-	<form>
-		<table>
-			<tr>
-				<td>Username</td>
-				<td><input type="text" name="txtUser" /></td>
-			</tr>
-			<tr>
-				<td>Passwort</td>
-				<td><input type="text" name="txtUser" /></td>
-			</tr>
-		
-			</table>
-	</form>
+<head>
+	<title>Willkommen bei Watchit</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<link rel="stylesheet" type="text/css" href="resources/styles/style.css" />
+</head>
+
+<body>
+
+	<div id="header">
+	1
+		<nav id="headernav" class="float-right">
+			<a th:href="@{/logout}">Abmelden</a>
+		</nav>
+		<form id="search" action="/GeneratorWatchIt" method="get">
+			<input name="key" type="text" placeholder="Suche..." th:placeholder="${(param.key != null) and (param.key[0] != '') ? param.key[0] : 'Suche...'}"></input> <input
+				type="submit" value="GO"></input>
+		</form>
+	</div>
 	
-	<a href= "login">Login</a>
+	<div id="leftbar" class="float-left">
+		<nav id="leftnav" class="nav">
+			<h5>GRUPPEN</h5>
+			<hr />
+			<th:block th:each="group : ${userGroups}">
+				<a th:href="@{\groups(groupid=${group.ID})}" th:text="${group.name}"></a>
+			</th:block>
+
+			<a id="leftnav-newgroup" href="bump">Neue Gruppe anlegen</a>
+		</nav>
+	</div>
+	<div id="rightbar" class="float-right">
+		<nav>
+			<h5>ERFOLGE</h5>
+			<p th:text="${user.username}">test</p>
+			<hr />
+			<div th:if="${user.isAdmin}">
+				<h5>ADMINISTRATION</h5>
+				<hr />
+				
+			</div>
+		</nav>
+	</div>
+	<div id="content">
+		<th:block class="margin-top-20" th:each="group : ${openGroups}">
+			<div class="entry">
+				<a th:href="@{\groups(groupid=${group.ID})}">
+					<strong id="entry-heading" th:text="${group.name}"></strong>
+					<strong id="entry-focus" th:text="${group.focus != '' ? group.focus : 'Allgemeine Gruppe'}"></strong>
+					<strong id="entry-description" th:text="${group.description != '' ? group.description : 'Keine Beschreibung verfÃ¼gbar.'}"></strong>
+				</a>
+			</div>
+		</th:block>
+		<div class="placeholder-100"></div>
+	</div>
+	<div id="footer" class="clear">5</div>
+
 </body>
+
 </html>
