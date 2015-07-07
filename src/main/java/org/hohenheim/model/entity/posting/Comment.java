@@ -37,6 +37,6 @@ public class Comment extends Post {
 
 	
 	/*
-	 * Methods
+	 * Methods 
 	 *******************/
 }
