@@ -37,7 +37,7 @@ public abstract class Post extends BaseEntity {
 		this.content = "";
 		
 		/*Instantiate Relations*/
-		this.comments = new TreeSet<Comment>();
+		this.comments = new ArrayList<Comment>();
 		this.createdBy = createdBy;
 	}
 
@@ -45,8 +45,8 @@ public abstract class Post extends BaseEntity {
 	/*
 	 * Relation mapping
 	 *******************/	
-	@OneToMany(mappedBy="ofPost")
-	public Set<Comment> comments;
+	@OneToMany(mappedBy="ofPost", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	public List<Comment> comments;
 	
 	@ManyToOne
 	public User createdBy;
@@ -56,7 +56,7 @@ public abstract class Post extends BaseEntity {
 	 * Methods
 	 *******************/
 	public void addComment(Comment nComment){
-		helper.checkSet(this.comments);
+		helper.checkList(this.comments);
 		
 		this.comments.add(nComment);
 	}
