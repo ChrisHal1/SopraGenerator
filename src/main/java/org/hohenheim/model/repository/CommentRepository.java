@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public class CommentRepository extends BaseRepository<Comment> {
 
 	public CommentRepository(){
-		super();
+		super(); 
 	}
 }
