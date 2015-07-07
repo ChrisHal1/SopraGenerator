@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public class TestRepository extends BaseRepository<Test> {
 
 	public TestRepository(){
-		super();
+		super(); 
 	}
 }
