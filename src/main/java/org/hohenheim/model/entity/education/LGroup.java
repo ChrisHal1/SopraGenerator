@@ -10,7 +10,7 @@ import org.hohenheim.util.helper;
 /* @Entity Class
  * @Last Updated: 28 01:54 by @Simon
  * @Description:
- * LLGroup-Entity-Class.
+ * LGroup-Entity-Class.
  */
 
 @Entity
@@ -58,10 +58,10 @@ public class LGroup extends BaseEntity {
 	@ManyToMany(fetch = FetchType.EAGER)
 	public List<User> members;
 	
-	@OneToMany(mappedBy="inGroup")
+	@OneToMany(mappedBy="inGroup", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
 	public List<GroupPost> posts;
 
-	@OneToMany(mappedBy="inGroup")
+	@OneToMany(mappedBy="inGroup", fetch = FetchType.EAGER, cascade=CascadeType.REFRESH)
 	public List<Test> tests;
 	
 	

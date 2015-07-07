@@ -6,9 +6,9 @@ import java.util.*;
 import org.hibernate.*;
 import org.hibernate.criterion.SimpleExpression;
 import org.hohenheim.model.entity.BaseEntity;
+import org.hohenheim.util.ORDER;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -46,14 +46,20 @@ public abstract class BaseRepository<T extends BaseEntity> implements IRepositor
 
 	}
 	
+	/*
+	 * @see org.hohenheim.model.repository.IRepository#save(org.hohenheim.model.entity.BaseEntity)
+	 */
 	@Override
 	public boolean save(T obj) throws Exception{
 		
 		return (boolean)((long)this.getSession().save(obj) > 0);
 	}
 	
+	/*
+	 * @see org.hohenheim.model.repository.IRepository#delete(org.hohenheim.model.entity.BaseEntity)
+	 */
 	@Override
-	public boolean delete(T obj){
+	public boolean delete(T obj) throws Exception{
 		String query = "DELETE FROM " + this.getNameOfClass() + "WHERE ID = :id";
 		int result = 0;
 		
@@ -68,8 +74,11 @@ public abstract class BaseRepository<T extends BaseEntity> implements IRepositor
 		return (result != 0);
 	}
 
+	/*
+	 * @see org.hohenheim.model.repository.IRepository#runQuery(java.lang.String)
+	 */
 	@Override
-	public List<T> runQuery(String query){
+	public List<T> runQuery(String query) throws Exception{
 		Session session = this.getSession();
 		
 		try{
@@ -81,18 +90,26 @@ public abstract class BaseRepository<T extends BaseEntity> implements IRepositor
 		return new ArrayList<T>();
 	}
 	
+	/*
+	 * @see org.hohenheim.model.repository.IRepository#getAllObjectsFromTable(boolean)
+	 */
 	@Override
-	public List<T> getAllObjectsFromTable(boolean OrderedByCreation) {
+	public List<T> getAllObjectsFromTable(ORDER order) throws Exception{
 		String query = "from " + this.getNameOfClass() + " as T";
 		
-		if(OrderedByCreation)
-			query += " order by T.Created asc";
+		if(order == ORDER.CREATION_DATE)
+			query += " order by T.created asc";
+		else if(order == ORDER.POINTS)
+			query += " order by T.points desc";
 		
 		return (List<T>)this.runQuery(query);
 	}
 	
+	/*
+	 * @see org.hohenheim.model.repository.IRepository#getById(long)
+	 */
 	@Override
-	public T getById(long Id){
+	public T getById(long Id) throws Exception{
 		String query = "from " + this.getNameOfClass() + " as T where T.ID = :id";
 		List<T> result = null;
 		
@@ -110,8 +127,12 @@ public abstract class BaseRepository<T extends BaseEntity> implements IRepositor
 			return null;
 		}
 	}
+	
+	/*
+	 * @see org.hohenheim.model.repository.IRepository#getByUniqueAttribute(java.lang.String, java.lang.String)
+	 */
 	@Override
-	public T getByUniqueAttribute(String attribute, String value){
+	public T getByUniqueAttribute(String attribute, String value) throws Exception{
 		String query = "from " + this.getNameOfClass() + " as T where T." + attribute + " = :val";
 		List<T> result = null;
 		
@@ -130,8 +151,11 @@ public abstract class BaseRepository<T extends BaseEntity> implements IRepositor
 		}
 	}
 	
+	/*
+	 * @see org.hohenheim.model.repository.IRepository#runQueryWithRestrictions(java.lang.Class, java.util.List, int, int)
+	 */
 	@Override
-	public List<T> runQueryWithRestrictions(Class<T> Tclass, List<SimpleExpression> criterias, int paginate_start, int paginate_range){
+	public List<T> runQueryWithRestrictions(Class<T> Tclass, List<SimpleExpression> criterias, int paginate_start, int paginate_range) throws Exception{
 		
 		List<T> result = new ArrayList<T>();
 

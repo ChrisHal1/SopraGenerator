@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 import org.hohenheim.model.entity.user.User;
 import org.hohenheim.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;

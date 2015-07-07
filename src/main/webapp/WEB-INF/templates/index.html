@@ -36,7 +36,7 @@
 			<h5>ERFOLGE</h5>
 			<p th:text="${user.username}">test</p>
 			<hr />
-			<div th:if="${admin}">
+			<div th:if="${user.isAdmin}">
 				<h5>ADMINISTRATION</h5>
 				<hr />
 				

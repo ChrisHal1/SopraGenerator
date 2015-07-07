@@ -39,6 +39,8 @@ public class User extends BaseEntity {
 	public boolean blocked;
 	@Column(nullable=false)
 	public String rolename;
+	@Column(nullable=false)
+	public long points;
 	
 
 	/*
@@ -55,6 +57,7 @@ public class User extends BaseEntity {
 		this.password = password;
 		this.blocked = false;
 		this.rolename = role.toString();
+		this.points = 0;
 		
 		/*Instantiate Relations*/
 		this.createdPosts = new ArrayList<Post>();
@@ -85,10 +88,10 @@ public class User extends BaseEntity {
 	inverseJoinColumns=@JoinColumn(name="UserID"))
 	public List<User> friendOf;
 	
-	@OneToMany(mappedBy="recipient")
+	@OneToMany(mappedBy="recipient", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	public List<Message> received;
 	
-	@OneToMany(mappedBy="sender")
+	@OneToMany(mappedBy="sender", fetch=FetchType.EAGER, cascade=CascadeType.REFRESH)
 	public List<Message> send;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -121,5 +124,8 @@ public class User extends BaseEntity {
 	}
 	public boolean isAdmin(){
 		return (this.rolename.compareTo(ROLE.ROLE_ADMIN.toString()) == 0);
+	}
+	public void addPoints(long pointsToAdd){
+		this.points += pointsToAdd;
 	}
 }

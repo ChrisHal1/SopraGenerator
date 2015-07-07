@@ -1,15 +1,10 @@
 package org.hohenheim.model.repository;
 
-import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.SimpleExpression;
 import org.hohenheim.model.entity.BaseEntity;
+import org.hohenheim.util.ORDER;
 
 /* @Interface
  * @Last Updated: 25.06 15:29 by @Simon
@@ -44,21 +39,36 @@ public interface IRepository<T extends BaseEntity> {
 	 * @param entity:	entity to delete from database.
 	 * @return:			true if successful.
 	 */
-	public boolean delete(T Entity);
+	public boolean delete(T Entity) throws Exception;
 	
 	/*
 	 * Use this method to fetch an object by id.
 	 * @param id:	The id of the object you want to fetch.
 	 * @return:		The object with id = Id.
 	 */
-	public T getById(long Id);
+	public T getById(long Id) throws Exception;
 	
-	public T getByUniqueAttribute(String attribute, String value);
+	/*
+	 * Use this method to fetch an object by any attribute (should be unique).
+	 * @param attribute:	The Name of the attribute.
+	 * @param value:		The value of the object to fetch for that attribute.
+	 */
+	public T getByUniqueAttribute(String attribute, String value) throws Exception;
 
-	public List runQuery(String query);
+	/*
+	 * run a simple SQL-Query.
+	 */
+	public List<T> runQuery(String query) throws Exception;
 
-	public List getAllObjectsFromTable(boolean OrderedByCreation);
+	/*
+	 * Get all saved objects of a specific entity-type.
+	 * specify the prefered order with an org.hohenheim.util.ORDER constant.
+	 */
+	public List<T> getAllObjectsFromTable(ORDER order) throws Exception;
 
-	public List runQueryWithRestrictions(Class<T> Tclass, List<SimpleExpression> criterias, int paginate_start, int paginate_range);
+	/*
+	 * Run a query with Expression objects.
+	 */
+	public List<T> runQueryWithRestrictions(Class<T> Tclass, List<SimpleExpression> criterias, int paginate_start, int paginate_range) throws Exception;
 
 }

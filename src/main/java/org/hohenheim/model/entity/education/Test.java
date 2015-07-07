@@ -50,7 +50,7 @@ public class Test extends BaseEntity {
 	@ManyToOne
 	public LGroup inGroup;
 	
-	@OneToMany(mappedBy="fromTest")
+	@OneToMany(mappedBy="fromTest", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	public List<Question> questions;
 	
 

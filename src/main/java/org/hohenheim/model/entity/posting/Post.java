@@ -45,7 +45,7 @@ public abstract class Post extends BaseEntity {
 	/*
 	 * Relation mapping
 	 *******************/	
-	@OneToMany(mappedBy="ofPost")
+	@OneToMany(mappedBy="ofPost", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	public List<Comment> comments;
 	
 	@ManyToOne

@@ -1,15 +1,22 @@
 package org.hohenheim.model.repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.criterion.SimpleExpression;
 import org.hohenheim.model.entity.education.LGroup;
 import org.hohenheim.model.entity.user.User;
-import org.hohenheim.util.helper;
+import org.hohenheim.util.ORDER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+/* @Repository class
+ * @Last Updated: 07.07 14:24 by @Simon
+ * @Description:
+ *
+ * LGroup Repository
+ * This Repository provides methods to manage Learning Groups within the database.
+ * 
+ *
+ */
 
 @Repository
 public class LGroupRepository extends BaseRepository<LGroup> {
@@ -22,7 +29,13 @@ public class LGroupRepository extends BaseRepository<LGroup> {
 	}
 	
 	public LGroup getGroup(String name){
-		return (LGroup)this.getByUniqueAttribute("name", name);
+		try {
+			return (LGroup)this.getByUniqueAttribute("name", name);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	public boolean createGroup(User createdBy, String name) throws Exception{
@@ -36,8 +49,8 @@ public class LGroupRepository extends BaseRepository<LGroup> {
 		return this.delete(this.getGroup(name));
 	}
 	
-	public List<LGroup> getAllGroups(boolean OrderedByCreation) throws Exception{
-		return (List<LGroup>)this.getAllObjectsFromTable(OrderedByCreation);
+	public List<LGroup> getAllGroups(ORDER order) throws Exception{
+		return (List<LGroup>)this.getAllObjectsFromTable(order);
 	}
 	/*
 	 * ID = the id of the current user
@@ -58,7 +71,7 @@ public class LGroupRepository extends BaseRepository<LGroup> {
 	
 	public List<LGroup> getOpenGroups(String username) throws Exception{
 		
-		List<LGroup> groups = this.getAllGroups(true);
+		List<LGroup> groups = this.getAllGroups(ORDER.CREATION_DATE);
 		
 		User user = this.userRepository.getByUniqueAttribute("username", username);
 		
@@ -71,7 +84,12 @@ public class LGroupRepository extends BaseRepository<LGroup> {
 	}
 	
 	public List<LGroup> search(String key){
-		return this.runQuery("FROM LGroup WHERE name LIKE '%" + key + "%'");
+		try {
+			return this.runQuery("FROM LGroup WHERE name LIKE '%" + key + "%'");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ArrayList<LGroup>();
+		}
 	}
 	
 	public boolean addMemberToGroup(LGroup group, User member){
