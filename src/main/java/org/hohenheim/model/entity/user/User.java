@@ -39,12 +39,17 @@ public class User extends BaseEntity {
 	public boolean blocked;
 	@Column(nullable=false)
 	public String rolename;
+	@Column(nullable=false)
+	public long points;
 	
 
 	/*
 	 * Constructor
 	 *******************/
-	public User(String username,String email, String password, ROLE role){
+	public User(){
+		super();
+	}
+	public User(String username, String email, String password, ROLE role){
 		super();
 		this.interests = new ArrayList<String>();
 		this.username = username;
@@ -52,14 +57,15 @@ public class User extends BaseEntity {
 		this.password = password;
 		this.blocked = false;
 		this.rolename = role.toString();
+		this.points = 0;
 		
 		/*Instantiate Relations*/
-		this.createdPosts = new TreeSet<Post>();
-		this.friends = new TreeSet<User>();
-		this.friendOf = new TreeSet<User>();
+		this.createdPosts = new ArrayList<Post>();
+		this.friends = new ArrayList<User>();
+		this.friendOf = new ArrayList<User>();
 		this.received = new ArrayList<Message>();
 		this.send = new ArrayList<Message>();
-		this.groups = new TreeSet<LGroup>();
+		this.groups = new ArrayList<LGroup>();
 		this.posts = new ArrayList<UserPost>();
 	}
 
@@ -68,28 +74,28 @@ public class User extends BaseEntity {
 	 * Relation mapping
 	 *******************/
 	@OneToMany(mappedBy="createdBy")
-	public Set<Post> createdPosts;
+	public List<Post> createdPosts;
 
 	@ManyToMany
 	@JoinTable(name="FRIENDS",
 	joinColumns=@JoinColumn(name="UserID"),
 	inverseJoinColumns=@JoinColumn(name="FriendID"))
-	public Set<User> friends;
+	public List<User> friends;
 	
 	@ManyToMany
 	@JoinTable(name="FRIENDS",
 	joinColumns=@JoinColumn(name="FriendID"),
 	inverseJoinColumns=@JoinColumn(name="UserID"))
-	public Set<User> friendOf;
+	public List<User> friendOf;
 	
-	@OneToMany(mappedBy="recipient")
+	@OneToMany(mappedBy="recipient", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	public List<Message> received;
 	
-	@OneToMany(mappedBy="sender")
+	@OneToMany(mappedBy="sender", fetch=FetchType.EAGER, cascade=CascadeType.REFRESH)
 	public List<Message> send;
 	
-	@ManyToMany
-	public Set<LGroup> groups;
+	@ManyToMany(fetch = FetchType.EAGER)
+	public List<LGroup> groups;
 	
 	@OneToMany(mappedBy="recipient")
 	List<UserPost> posts;
@@ -115,5 +121,11 @@ public class User extends BaseEntity {
 	}
 	public void unblock(){
 		this.blocked = false;
+	}
+	public boolean isAdmin(){
+		return (this.rolename.compareTo(ROLE.ROLE_ADMIN.toString()) == 0);
+	}
+	public void addPoints(long pointsToAdd){
+		this.points += pointsToAdd;
 	}
 }
