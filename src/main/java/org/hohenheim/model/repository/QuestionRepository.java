@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public class QuestionRepository extends BaseRepository<Question> {
 
 	public QuestionRepository(){
-		super();
+		super(); 
 	}
 }
