@@ -22,8 +22,8 @@ public class HomeController implements IController{
     
     @RequestMapping(value="/sucheStarten")
     public String sucheStarten() {
-        // TODO: nach gruppen und personen suchen, die dem model übergeben und anzeigen
+        // TODO: nach gruppen und personen suchen, die dem model Ã¼bergeben und anzeigen
         return "suche";
     }
-    
+     
 }
