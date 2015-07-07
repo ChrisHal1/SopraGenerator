@@ -1,5 +1,6 @@
 package org.hohenheim.model.entity;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -23,17 +24,17 @@ public abstract class BaseEntity {
 	public long ID;
 	/*Timestamps*/
 	@Basic
-	public Date LastUpdate;
+	public Date lastUpdate;
 	@Basic
 	@Column(updatable=false)
-	public Date Created;
+	public Date created;
 		
 	
 	/*
 	 * Constructor
 	 *******************/
 	protected BaseEntity(){
-		this.Created = new Date();
+		this.created = new Date();
 		this.Updated();
 	}
 
@@ -46,6 +47,7 @@ public abstract class BaseEntity {
 	 * Methods
 	 *******************/
 	protected void Updated(){
-		this.LastUpdate = new Date();
+		this.lastUpdate = new Date();
 	}
+
 }
