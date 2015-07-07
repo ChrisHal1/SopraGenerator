@@ -10,7 +10,7 @@ import javax.persistence.*;
 /* @Entity Class
  * @Last Updated: 24.06 00:05 by @Simon
  * @Description:
- * Nachrichten-Entity-Class.
+ * Message-Entity-Class.
  */
 
 
@@ -29,9 +29,12 @@ public class Message extends BaseEntity {
 	/*
 	 * Constructor
 	 *******************/
-	public Message(User recipient, User sender){
+	public Message(){
+		
+	}
+	public Message(User sender, User recipient, String content){
 		super();
-		this.content = "";
+		this.content = content;
 		
 		/*Instantiate Relations*/
 		this.recipient = recipient;
@@ -54,7 +57,7 @@ public class Message extends BaseEntity {
 	 *******************/
 	/*created is already saved in baseclass,so this is just to capsule...*/
 	public Date sendDate(){
-		return this.Created;
+		return this.created;
 	}
 
 }
