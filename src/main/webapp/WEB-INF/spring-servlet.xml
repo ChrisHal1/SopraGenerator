@@ -9,11 +9,13 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 	<!--enable automatic scanning for beans (@Controller @Service etc) -->
-	<context:component-scan base-package="
-	org.hohenheim " />
+	<context:component-scan base-package="org.hohenheim" />
+	<context:annotation-config />
 
-	<mvc:annotation-driven />
-	<tx:annotation-driven />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<mvc:annotation-driven/>
+	<tx:annotation-driven proxy-target-class="true" />
 	<!--enablethethymeleafframework -->
 	<bean id="templateResolver"
 		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
@@ -34,6 +36,18 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+						<!-- 
+						<bean id="BaseRepository" class="org.hohenheim.model.repository.BaseRepository">
+						<property name="session" ref="sessionFactory" />
+						</bean>
+						
+						<bean id="BaseService" class="org.hohenheim.services.BaseService">
+						<property name="rep" ref="UserRepository" />
+						</bean>
+						-->
+						
+						
+
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -41,7 +55,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
-	<bean id="sessionFactory"
+	<bean id="sessionFactory" name="session"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="org.hohenheim" />
@@ -53,6 +67,7 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 			</props>
 		</property>
 	</bean>
+	
 
 	<!-- this section configures the spring security context, used for authentication 
 		(login) & authorization -->
@@ -63,21 +78,22 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 			<security:jdbc-user-service
 				data-source-ref="dataSource"
 				users-by-username-query="
-         			SELECT USERNAME, PASSWORD, CASE BLOCKED WHEN 0 THEN 'true' ELSE 'false' END 'BLOCKED'
-         			FROM User
-         			WHERE USERNAME=?;"
+         			SELECT username, password, CASE blocked WHEN 0 THEN 'true' ELSE 'false' END 'BLOCKED'
+         			FROM User u
+         			WHERE u.username=?;"
 
 				authorities-by-username-query="
-        			SELECT USERNAME, ISADMIN
-       			 	FROM User
-       				WHERE USERNAME=?;" />
+        			SELECT username, rolename
+       			 	FROM User u
+       				WHERE u.username=?;" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 
-	<security:http>
-		<security:form-login login-page="/login.html" />
+	<security:http auto-config="true">
+		<security:csrf disabled="true" />
+		<security:form-login login-page="/login"  login-processing-url="/j_spring_security_check"  default-target-url="/" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password" />
 		<security:logout logout-url="/logout" />
-		<security:intercept-url pattern="/*"/> <!-- access="ROLE_USER" -->
+		<security:intercept-url pattern="/" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 	</security:http>
 
 </beans>
