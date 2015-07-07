@@ -41,7 +41,7 @@ public class Question extends BaseEntity {
 	
 	
 	/*
-	 * Relation mapping
+	 * Relation mapping 
 	 *******************/
 	@ManyToOne
 	public Test fromTest;
