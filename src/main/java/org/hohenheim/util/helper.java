@@ -23,7 +23,7 @@ public abstract class helper {
 	
 	/*
 	 * check if a list is initialized. If its not, it is automatically initialized.
-	 * @param list:	The list
+	 * @param list:	The list 
 	 * @return:		true if list is not null (initialized).
 	 */
 	static public <T> boolean checkList(List<T> list){
