@@ -18,5 +18,10 @@ public class GruppenController implements IController {
 	//gruppe der db hinzufügen, neue gruppe anzeigen
 	return "gruppe";
     }
-  
+    @RequestMapping("/gruppeAnlegenPOST")
+    public String gruppeAnlegenPost() {
+	// TODO Auto-generated method stub
+System.out.println("tesst");
+	return "gruppe";
+    }
 }
