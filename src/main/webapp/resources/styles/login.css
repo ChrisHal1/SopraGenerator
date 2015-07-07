@@ -1,0 +1,321 @@
+/*
+ * a lot of definitions in this css are not used anymore, thats because the login screen used to look different...
+ */
+
+
+body
+{
+    margin:0 0 0 0;
+    font: 1em Arial,Verdana,sans-serif;
+}
+
+header,footer,#head_container,#footer_container,#login_container table,#login_container input{
+    width:100%;
+}
+
+header{
+    height:75px;
+    padding:25px 0 0 0;
+    text-align:center;
+    background-color:rgb(40,40,45);
+}
+header hr, footer hr{
+    border:none;
+    height:1px;
+    background-color:rgb(185, 185, 185);
+}
+footer{
+    bottom:0;
+    background-color:rgb(50,50,50);
+    padding-top:15px;
+    height:100px;
+    position:fixed;
+    bottom:0px;
+}
+#footer_labels a{
+    color:#A6A7B9;
+    text-decoration:none;
+    font-size:15px;
+    margin-right:10px;
+}
+#footer_labels a:hover{
+    color:#FFFFFF;
+}
+#login_container .button,#registration_formular .button{
+    display:inline-block;
+    width:125px;
+    padding:15px 10px 15px 10px;
+    text-align:center;
+    border:none;
+    text-decoration:none;
+    vertical-align:central;
+    font-weight:bold;
+    color:white;
+    letter-spacing:0.02em;
+    position:relative;
+    bottom:-10px;
+    cursor:pointer;
+}
+
+#button_login{
+    margin:10px 83px 0 83px;
+    display:block;
+    outline:solid 3px #5cfc71;
+    background-color:#13fb30;
+    height:49px;
+}
+#button_register{
+    margin:10px;
+    margin-left:5px;
+    outline:solid 3px rgb(184, 0, 255);
+    background-color:rgb(154, 0, 248);
+}
+#button_login:hover{
+    -webkit-animation: button_animation_blue 1s; /* Chrome, Safari, Opera */
+    animation: button_animation_green 1s;
+    -webkit-animation-delay:0s;
+    -webkit-animation-timing-function:ease;
+    -webkit-animation-fill-mode:forwards;
+}
+#button_register:hover{
+    -webkit-animation: button_animation_violett 1s; /* Chrome, Safari, Opera */
+    animation: button_animation_violett 1s;
+    -webkit-animation-delay:0s;
+    -webkit-animation-timing-function:ease;
+    -webkit-animation-fill-mode:forwards;
+}
+
+#head_container{
+    display:block;
+    height:230px;
+    background-color:#4efc64;
+    margin-bottom:50px;
+    font-family:Calibri;
+    color:#444444;
+    font-size:2em;
+}
+.p_big, .p_small{
+    font-family:Calibri;
+    color:#444444;
+    letter-spacing:1px;
+}
+.p_big{
+    font-size:25px;
+}
+.p_small{
+    font-size:14px;
+}
+#header_div{
+    position:absolute;
+    top:150px;
+    left:50px;
+}
+#footer_container{
+    display:block;
+    height:200px;
+}
+#login_container{
+    padding:0px;
+    display:inline-block;
+    margin-right:10%;
+    margin-top:15px;
+    float:right;
+    background-color:rgb(20,20,20);
+    opacity:0.9;
+    height:350px;
+    color:white;
+    font-size:0.5em;
+    box-shadow: 6px 6px 6px #111111;
+}
+#login_container p{
+    text-align:center;
+}
+#login_container fieldset{
+    margin:1px;
+    border:none;
+    padding-bottom:0px;
+}
+#login_container fieldset > hr{
+    margin:25px;
+    margin-bottom:0px;
+}
+#login_container table td{
+    padding-top:8px;
+}
+#login_container input{
+    font-size:15px;
+    height:30px;
+    border:none;
+    border-radius:4px;
+    background-color:white;
+    text-align:center;
+    font-weight:bold;
+    color:rgb(70,70,70);
+}
+.box_with_corner{
+    display:block;position:relative;
+    width:200px;
+    opacity:0.7;
+    background:rgb(60, 130, 180);
+}
+.box_with_corner:before{
+    content: "";
+    position:absolute;
+    background:transparent;
+    width:185px;
+    height:0px;
+    border:35px solid transparent;
+    border-bottom-color:rgb(60, 130, 180);
+    border-left:none;
+    border-top:none;
+    top:-35px;
+    left:0px;
+}
+.box_with_corner:after {
+    content: "";
+    position:absolute;
+    background:transparent;
+    width:0px;
+    height:0px;
+    border:35px solid transparent;
+    border-bottom-color:rgb(30, 100, 150);
+    border-left:none;
+    border-top:none;
+    top:-35px;
+    left:185px;
+}
+
+/*
+#footer_container div{
+    -webkit-animation: footer_div_animation 1s;
+    animation: footer_div_animation 1s;
+    -webkit-animation-delay:3s;
+    -webkit-animation-timing-function:ease;
+    -webkit-animation-fill-mode:forwards;
+}*/
+
+.gradient_black {
+    background: -webkit-linear-gradient(90deg, rgb(40,40,45), rgb(65,65,70), rgb(65,65,70), rgb(40,40,45)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgb(40,40,45), rgb(65,65,70), rgb(65,65,70), rgb(40,40,45)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgb(40,40,45), rgb(65,65,70), rgb(65,65,70), rgb(40,40,45)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(90deg, rgb(40,40,45), rgb(65,65,70), rgb(65,65,70), rgb(40,40,45)); /* Standard syntax */
+}
+.gradient_white {
+    margin-left:175px;
+    margin-right:175px;
+    background: -webkit-linear-gradient(90deg, rgb(100,100,100), rgb(240,240,240), rgb(240,240,240), rgb(100,100,100)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgb(100,100,100), rgb(240,240,240), rgb(240,240,240), rgb(100,100,100)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgb(100,100,100), rgb(240,240,240), rgb(240,240,240), rgb(100,100,100)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(90deg, rgb(50,50,55), rgb(220,220,220), rgb(220,220,220), rgb(50,50,55)); /* Standard syntax */
+}
+.gradient_smooth {
+    background: -webkit-linear-gradient(90deg, rgb(255,255,255), rgb(245,236,236), rgb(235,226,226), rgb(235,226,226), rgb(245,236,236), rgb(255,255,255)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgb(255,255,255), rgb(245,236,236), rgb(235,226,226), rgb(235,226,226), rgb(245,236,236), rgb(255,255,255)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgb(255,255,255), rgb(245,236,236), rgb(235,226,226), rgb(235,226,226), rgb(245,236,236), rgb(255,255,255)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(90deg, rgb(255,255,255), rgb(235,226,226), rgb(225,216,216), rgb(225,216,216), rgb(235,226,226), rgb(255,255,255)); /* Standard syntax */
+}
+
+.gradient_white_radial_elipse{
+    background: -webkit-radial-gradient(ellipse, rgb(111, 166, 190) 25%, rgb(60, 130, 180) 58%, rgb(0, 110, 160) 100%); /* Safari 5.1-6.0 */
+    background: -o-radial-gradient(ellipse, rgb(111, 166, 190) 25%, rgb(60, 130, 180) 58%, rgb(0, 110, 160) 100%); /* For Opera 11.6-12.0 */
+    background: -moz-radial-gradient(ellipse, rgb(111, 166, 190) 25%, rgb(60, 130, 180) 58%, rgb(0, 110, 160) 100%); /* For Firefox 3.6-15 */
+    background: radial-gradient(ellipse, rgb(111, 166, 190) 25%, rgb(60, 130, 180) 58%, rgb(0, 110, 160) 100%); /* Standard syntax */
+}
+
+@-webkit-keyframes footer_div_animation
+{
+from {
+    background-color:#40e0d0;
+}
+to {
+    -ms-transform: translate(0px,-25px); /* IE 9 */
+    -webkit-transform: translate(0px,-25px); /* Chrome, Safari, Opera */
+    transform: translate(0px,-25px);
+    -ms-transform: scale(1.3,1.3); /* IE 9 */
+    -webkit-transform: scale(1.3,1.3); /* Chrome, Safari, Opera */
+    transform: scale(1.3,1.3);
+    border-radius:40px;
+    background-color:#008080;
+}
+}
+@-webkit-keyframes button_animation_green
+{
+    from {
+        outline:solid 3px #5cfc71;
+    	background-color:#13fb30;
+
+    }
+    to {
+        outline:solid 3px #15fb32;
+    	background-color:#03cf1d;
+    }
+}
+@-webkit-keyframes button_animation_violett
+{
+    from {
+        outline:solid 3px rgb(184, 0, 255);
+        background-color:rgb(154, 0, 248);
+    }
+    to {
+        outline:solid 3px rgb(218, 0, 255);
+        background-color:rgb(188, 0, 255);
+    }
+}
+
+#registration_formular{
+    text-align:left;
+    width:50%;
+    position:absolute;
+    display:inline;
+    left:25%;
+    right:25%;
+}
+#registration_formular fieldset{
+    background-color:rgba(170,170,170,0.25);
+    border:1px solid gray;
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
+    background-color:white;
+    color:gray;
+    letter-spacing:0.5px;
+    font-size:14px;
+    font-weight:bold;
+}
+#registration_formular table{
+    width:75%;
+}
+/*
+#registration_formular table tr > td:first-child{
+    width:200px;
+}*/
+#registration_formular table input{
+     text-align:center;
+     margin:0px;
+     padding:3px;
+}
+#tooltip_container{
+    display:inline;
+    float:right;
+    width:200px;
+    height:341px;
+    padding-top:25px;
+    padding-bottom:25px;
+    padding-left:10px;
+    padding-right:10px;
+    margin-top:81px;
+    margin-bottom:75px;
+    margin-right:50px;
+    letter-spacing:1px;
+    font-variant:small-caps;
+    font-weight:400;
+    color:white;
+}
+.reddot{
+    color:rgb(255, 0, 219);
+    font-weight:bold;
+    font-size:1.1em;
+}
+.reddot:after{
+    content:" ";
+}

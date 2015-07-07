@@ -1,0 +1,183 @@
+/*
+ * elements
+*/
+
+html, body{
+	margin: 0;
+	border:none;
+	padding:0;
+	height:100%;
+	font:14px Verdana;
+	background-color: #eeedfe;
+}
+hr{
+	border:none;
+	border-bottom:2px solid #ffffff;
+	outline:1px solid #eeeeee;
+	margin:0 12px 0 12px;
+}
+h1,h2,h3,h4,h5,h6, input{
+	letter-spacing:1px;
+}
+a{
+	text-decoration:none;
+	color:darkgray;
+}
+div{
+	margin:0;
+	padding:0;
+	border: none;
+}
+
+
+/*
+ * by id
+ */
+
+/*header*/
+
+#header{
+	width:100%;
+	height:135px;
+	background-color:#474747;
+	border-bottom: 25px solid #4efc64;
+	margin:0;
+}
+#headernav{
+	margin-right:15px;
+	margin-top:15px;
+}
+#headernav a{
+	color:white;
+	font-weight:bold;
+	font-size:13px;
+}
+
+#search{
+	float:clear;
+	width:400px;
+	margin:65px auto;
+	align:center;
+}
+#search input[type="text"]{
+	width:300px;
+	height:25px;
+	float:left;
+	margin-right:5px;
+	color:#898989;
+	font-weight:bold;
+	border:2px solid #ffffff;
+	background-color: #fafafa;
+}
+#search input[type="submit"]{
+	float:left;
+	height:31px;
+	width:50px;
+	color:#444444;
+	font-weight:bold;
+	border:2px solid #4efc64;
+	background-color: #a2fdad;
+}
+
+/*content*/
+
+#content{
+	overflow:hidden;
+}
+.entry{
+	display:block;
+	border-radius: 6px 60px 6px 60px;
+	height:100px;
+	margin:20px 50px 0 50px;
+	background-color:white;
+}
+.entry a strong{
+	text-decoration:none;
+	color: gray;
+	display:block;
+}
+#entry-heading{
+	position:relative;
+	margin:15px 0 0 10px;
+	text-align:center;
+	font-size:20px;
+	font-variant:small-caps;
+}
+#entry-description{
+}
+#entry-focus{
+}
+
+/*left menu*/
+
+#leftbar{
+	width:200px;
+}
+#leftnav h5{
+	font-weight:bold;
+	color:#515151;
+	margin:10px 0 5px 12px;
+}
+#leftnav-newgroup{
+	text-decoratin:underline;
+	margin-top:20px;
+}
+#leftnav a{
+	display:block;
+	margin:0 0 5px 22px;
+	padding:0 0 0 10px;
+	text-decoration:none;
+	color:blue;
+	
+}
+
+/*right menu*/
+
+#rightbar{
+	width:200px;
+}
+
+
+/*
+ * simple classes for single purpose
+ */
+ 
+.float-left{
+	float:left;
+}
+.float-right{
+	float:right;
+}
+.clear{
+	clear:both;
+}
+.inline{
+	display:inline;
+}
+.margin-top-20{
+	margin-top:20px;
+}
+.placeholder-100{
+	height:100px;
+}
+
+/*******************************************************/
+/*ANIMATIONS*/
+
+#leftnav a:hover{
+	border-left:1px solid gray;
+	padding-left:15px;
+}
+#headernav a:hover{
+	color:#4efc64;
+}
+input[type="submit"], a{
+	cursor:pointer;
+}
+#search input[type="submit"]:hover{
+	border:2px solid #20fb3c;
+	background-color: #56fc6b;
+}
+.entry:after{
+	border-left:1px solid green;
+}
