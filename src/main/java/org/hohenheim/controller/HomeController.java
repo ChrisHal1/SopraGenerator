@@ -8,6 +8,9 @@ import org.hohenheim.services.GroupService;
 import org.hohenheim.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,14 +57,22 @@ public class HomeController implements IController{
 		return "gruppe";
 	}
     
-    @RequestMapping(value="/suche")
+    @RequestMapping(value="/suche", method=RequestMethod.GET)
     public String suche() {
         return "suche";
     }
     
-    @RequestMapping(value="/sucheStarten")
-    public String sucheStarten() {
+    @RequestMapping(value="/suche", method=RequestMethod.POST)
+    public String sucheStarten(@ModelAttribute("txtSuche") String suchText,
+	    BindingResult resutlt, Model model) {
         // TODO: nach gruppen und personen suchen, die dem model übergeben und anzeigen
+	
+	System.out.println(suchText);
+	List<LGroup> groups = new LinkedList<LGroup>();
+	groups.add(new LGroup(null, "testgruppe1"));
+	groups.add(new LGroup(null, "testgruppe2"));
+	model.addAttribute("groups", groups);
+	
         return "suche";
     }
     
