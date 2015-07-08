@@ -5,22 +5,34 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<ul>
-	<li><a href= "nutzerDerGruppeHinzufuegen">Neuen Nutzer hinzufÃ¼gen</a></li>
-	<li><a href= "offeneBeitrittsanfragen">offene Beitrittsanfragen</a></li>
-	<li><a href= "testErstellen">Neuen Test erstellen</a></li>
-	<li><a href= "testAbsolvieren">Test absolvieren</a></li>
-	<li><a href= "diskussionenAnzeigen">bisherige Diskussionen</a></li>
+	<ul>
+		<li><a href="nutzerDerGruppeHinzufuegen">Neuen Nutzer
+				hinzufügen</a></li>
+		<li><a href="offeneBeitrittsanfragen">offene
+				Beitrittsanfragen</a></li>
+		<li><a href="testErstellen">Neuen Test erstellen</a></li>
+		<li><a href="testAbsolvieren">Test absolvieren</a></li>
+		<li><a href="diskussionenAnzeigen">bisherige Diskussionen</a></li>
 	</ul>
-			
-<form>
-		<table>
-			<tr>
-				<td>neue Diskussion erstellen:</td>
-				<td><input type="text" name="txtNeueDiskussion" /></td>
-			</tr>
-			</table></form>
-	<a href= "diskussionErstellen">neue Diskussionen erstellen</a>
-			
+
+
+	<form action="#" th:action="@{/diskussionErstellen}" method="post">
+		<p>neue Diskussion erstellen: <input type="text"
+				name="titleOfDiscussion" /></p>
+		<p><input type="submit" value="Diskussion erstellen" /></p>
+	</form>
+	
+	<p>bisherige Diskussionen: </p>
+	
+	<div id="Diskussionscontainer">
+			<table>
+					<c:forEach items="${diskussion}" var="aktuelleDiskussion">
+						<tr>
+							<!-- hier müssen die gruppenposts rein mit kommentaren -->
+						</tr>
+					</c:forEach>
+			</table>
+		</div>
+
 </body>
 </html>
