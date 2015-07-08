@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Leaderboard</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+Alle User sortiert nach Punktzahl:
+
+<div id="leaderboard">
+			<table>
+						<tr th:each="aktuellerUser : ${user}">
+							<td th:text="${aktuellerUser.username}"></td>
+							<td th:text="${aktuellerUser.points}"></td>
+						</tr>
+			</table>
+		</div>
+
+</body>
+</html>
