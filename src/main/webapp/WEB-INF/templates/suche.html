@@ -7,17 +7,31 @@
 <body>
 Suche nach Personen oder Gruppen:
 
-	<form>
-		<table>
-			<tr>
-				<td>Bitte geben Sie hier Ihren Suchbegriff ein:</td>
-				<td><input type="text" name="txtSuche" /></td>
-			</tr>
-			
-		
-			</table>
+	
+	
+	<form action="#" th:action="@{/suche}" method="post">
+		<p>Bitte geben Sie hier Ihren Suchbegriff ein: <input type="text"
+				name="txtSuche" /></p>
+		<p><input type="submit" value="Suche starten" /></p>
 	</form>
 	
-	<a href= "sucheStarten">Suche!</a>
+	<div id="Gruppencontainer">
+Gefundene Gruppen:
+			<table>
+						<tr th:each="aktuelleGruppe : ${groups}">
+							<td th:text="${aktuelleGruppe.name}"></td>
+					<!--bessere möglichkeit?		<td><a href="/gruppenwahl/${aktuelleGruppe.name}" >wählen</a></td> -->
+						</tr>
+			</table>
+		</div>
+
+<div id="Profilcontainer">
+Gefundene Nutzer:
+			<table>
+					<tr th:each="aktuellerUser : ${users}">
+							<td th:text="${aktuellerUser.username}"></td>
+						</tr>
+			</table>
+		</div>
 </body>
 </html>
