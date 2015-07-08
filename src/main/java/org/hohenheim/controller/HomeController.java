@@ -1,10 +1,9 @@
 package org.hohenheim.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hohenheim.model.entity.education.LGroup;
-import org.hohenheim.model.entity.posting.Post;
-import org.hohenheim.model.entity.posting.UserPost;
 import org.hohenheim.services.GroupService;
 import org.hohenheim.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +35,12 @@ public class HomeController implements IController{
    		
    		//List<LGroup> groups = groupService.getUsersGroups(groupService.getUsernameOfCurrentUser());
 //   		List<Post> posts = userService.getCurrentUserObject().createdPosts;
+	List<LGroup> groups = new LinkedList<LGroup>();
+	groups.add(new LGroup(null, "testgruppe1"));
+	groups.add(new LGroup(null, "testgruppe2"));
    		ModelAndView mv = new ModelAndView();
-   	//	mv.addObject("groups", groups);
+   		
+   		mv.addObject("groups", groups);
 //   		mv.addObject("posts", posts);
    		return mv;
    	}
@@ -61,5 +64,16 @@ public class HomeController implements IController{
         // TODO: nach gruppen und personen suchen, die dem model übergeben und anzeigen
         return "suche";
     }
+    
+    @RequestMapping(method=RequestMethod.GET, value="/leaderboard")
+	public ModelAndView leaderboards() {
+		
+//		List<User> user = userService.getAllUsers(); TODO:not yet implemented
+	
+		ModelAndView mv = new ModelAndView();
+		
+		//mv.addObject("user", user);
+		return mv;
+	}
      
 }

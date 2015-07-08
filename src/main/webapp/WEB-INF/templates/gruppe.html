@@ -6,13 +6,16 @@
 </head>
 <body>
 	<ul>
-		<li><a href="nutzerDerGruppeHinzufuegen">Neuen Nutzer
-				hinzufügen</a></li>
+		
+				<li><form action="#" th:action="@{/nutzerDerGruppeHinzufuegen}" method="post">
+		<p>Neuen Nutzer	hinzufügen <input type="text"
+				name="nutzerDerGruppeHinzufuegen" /></p>
+		<p><input type="submit" value="Neuen Nutzer hinzufügen" /></p>
+	</form></li>
 		<li><a href="offeneBeitrittsanfragen">offene
 				Beitrittsanfragen</a></li>
 		<li><a href="testErstellen">Neuen Test erstellen</a></li>
 		<li><a href="testAbsolvieren">Test absolvieren</a></li>
-		<li><a href="diskussionenAnzeigen">bisherige Diskussionen</a></li>
 	</ul>
 
 
@@ -29,6 +32,7 @@
 					<c:forEach items="${diskussion}" var="aktuelleDiskussion">
 						<tr>
 							<!-- hier müssen die gruppenposts rein mit kommentaren -->
+							
 						</tr>
 					</c:forEach>
 			</table>

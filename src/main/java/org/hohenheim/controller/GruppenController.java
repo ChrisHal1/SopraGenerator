@@ -46,10 +46,20 @@ public class GruppenController implements IController {
 	return "gruppe";
     }
     
+    @RequestMapping(value = "/nutzerDerGruppeHinzufuegen", method = RequestMethod.POST)
+    public String neuenNutzerDerGruppeHinzufuegen(@ModelAttribute("nutzerDerGruppeHinzufuegen") String nutzername,
+	    BindingResult resutlt) {
+	// TODO prüfen ob gruppe schon voll ist, falls ja, nachricht, sonst: nutzer hinzufügen
+
+	return "gruppe";
+    }
+    
+    
     @RequestMapping(value = "/diskussionErstellen", method = RequestMethod.POST)
     public String diskussionErstellen(@ModelAttribute("titleOfDiscussion") String titleOfDiscussion,
 	    BindingResult resutlt) {
 	// TODO neuer GroupPost
+	
 	
 	return "gruppe";
     }
