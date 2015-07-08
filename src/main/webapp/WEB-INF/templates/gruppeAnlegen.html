@@ -7,29 +7,18 @@
 <body>
 Neue Gruppe anlegen:
 
-<form>
-		<table>
-			<tr>
-				<td>Gruppenname</td>
-				<td><input type="text" name="txtGruppenname" /></td>
-			</tr>
-			<tr>
-				<td>Lernfach</td>
-				<td><input type="text" name="txtLernfach" /></td>
-			</tr>
-			<tr>
-				<td>Themengebiet</td>
-				<td><input type="text" name="txtThemengebiet" /></td>
-			</tr>
-			<tr>
-				<td>Beschreibung</td>
-				<td><input type="text" name="txtBeschreibung" /></td>
-			</tr>
-		
-			</table>
-			</form>
 
-			<button type="button" id="gruppeAnlegenPOST">Gruppe anlegen</button>
+
+			
+			
+			<form action="#" th:action="@{/gruppeAnlegenImProfil}" method="post">
+		
+			<p>Gruppenname: <input type="text" name="gruppenname" /></p>			
+			<p>Lernfach: <input type="text" name="lernfach" /></p>
+			<p>Themengebiet: <input type="text" name="themengebiet" /></p>
+			<p>Beschreibung: <input type="text" name="beschreibung" /></p>
+			<p><input type="submit" value="Gruppe anlegen"/></p>
+			</form>
 			
 		
 			
