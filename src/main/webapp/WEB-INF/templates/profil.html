@@ -23,6 +23,27 @@ Ihre Funktionen:
 	
 	</ul>
 <br/>
-Meine Pinnwand:
+
+<div id="Gruppencontainer">
+Meine Gruppen:
+			<table>
+					<c:forEach items="${groups}" var="aktuelleGruppe">
+						<tr>
+							<td><a href="/gruppenwahl/${aktuelleGruppe.name}" ></a>${aktuelleGruppe.name}</td>
+						</tr>
+					</c:forEach>
+			</table>
+		</div>
+
+<div id="Profilcontainer">
+Meine Pinwand:
+			<table>
+					<c:forEach items="${posts}" var="aktuellerPost">
+						<tr>
+							<td>${aktuellerPost.name}</td>
+						</tr>
+					</c:forEach>
+			</table>
+		</div>
 </body>
 </html>
